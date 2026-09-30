@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daisy Shea — Acrylic Works</title>
+
+    <meta
+        name="description"
+        content="Acrylic marker artwork by Daisy Shea."
+    >
+
+    <style>
+        :root {
+            --background: #171615;
+            --surface: #211f1d;
+            --text: #eee9df;
+            --muted: #a9a39a;
+            --border: #393531;
+            --accent: #d7b58a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* ---------- Header ---------- */
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 30px 45px;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            color: var(--accent);
+            font-family: Arial, sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .intro {
+            max-width: 650px;
+            margin-top: 24px;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        /* ---------- Navigation ---------- */
+
+        nav {
+            margin-top: 28px;
+            display: flex;
+            gap: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 0.85rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        /* ---------- Gallery ---------- */
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px 80px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .artwork {
+            margin: 0;
+        }
+
+        .artwork button {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: var(--surface);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .artwork img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .artwork button:hover img {
+            transform: scale(1.025);
+            opacity: 0.9;
+        }
+
+        figcaption {
+            padding-top: 12px;
+        }
+
+        .title {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .details {
+            margin: 3px 0 0;
+            color: var(--muted);
+            font-family: Arial, sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ---------- About ---------- */
+
+        .about {
+            max-width: 650px;
+            margin: 110px 0 0;
+            padding-top: 35px;
+            border-top: 1px solid var(--border);
+        }
+
+        .about h2 {
+            margin: 0 0 15px;
+            font-size: 1.7rem;
+            font-weight: 400;
+        }
+
+        .about p {
+            color: var(--muted);
+        }
+
+        /* ---------- Footer ---------- */
+
+        footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-family: Arial, sans-serif;
+            font-size: 0.75rem;
+        }
+
+        footer a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        /* ---------- Lightbox ---------- */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+            background: rgba(10, 9, 8, 0.94);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: min(100%, 1000px);
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+
+            border: 0;
+            background: none;
+            color: var(--text);
+
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+            font-weight: 200;
+            cursor: pointer;
+        }
+
+        /* ---------- Responsive ---------- */
+
+        @media (max-width: 800px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            header {
+                padding-top: 50px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            header,
+            main {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <p class="eyebrow">Daisy Shea</p>
+
+    <h1>Acrylic Works</h1>
+
+    <p class="intro">
+        Acrylic marker artwork on paper, exploring color, organic forms,
+        texture, and whatever catches my attention.
+    </p>
+
+    <nav>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="https://instagram.com/YOUR_USERNAME" target="_blank" rel="noopener">
+            Instagram
+        </a>
+    </nav>
+</header>
+
+
+<main>
+
+    <section id="gallery" class="gallery">
+
+        <figure class="artwork">
+            <button onclick="openLightbox('images/art-01.jpg')">
+                <img
+                    src="images/art-01.jpg"
+                    alt="Acrylic marker artwork, piece one"
+                    loading="lazy"
+                >
+            </button>
+
+            <figcaption>
+                <p class="title">Untitled I</p>
+                <p class="details">Acrylic marker on paper · 2026</p>
+            </figcaption>
+        </figure>
+
+
+        <figure class="artwork">
+            <button onclick="openLightbox('images/art-02.jpg')">
+                <img
+                    src="images/art-02.jpg"
+                    alt="Acrylic marker artwork, piece two"
+                    loading="lazy"
+                >
+            </button>
+
+            <figcaption>
+                <p class="title">Untitled II</p>
+                <p class="details">Acrylic marker on paper · 2026</p>
+            </figcaption>
+        </figure>
+
+
+        <figure class="artwork">
+            <button onclick="openLightbox('images/art-03.jpg')">
+                <img
+                    src="images/art-03.jpg"
+                    alt="Acrylic marker artwork, piece three"
+                    loading="lazy"
+                >
+            </button>
+
+            <figcaption>
+                <p class="title">Untitled III</p>
+                <p class="details">Acrylic marker on paper · 2026</p>
+            </figcaption>
+        </figure>
+
+
+        <figure class="artwork">
+            <button onclick="openLightbox('images/art-04.jpg')">
+                <img
+                    src="images/art-04.jpg"
+                    alt="Acrylic marker artwork, piece four"
+                    loading="lazy"
+                >
+            </button>
+
+            <figcaption>
+                <p class="title">Untitled IV</p>
+                <p class="details">Acrylic marker on paper · 2026</p>
+            </figcaption>
+        </figure>
+
+
+        <figure class="artwork">
+            <button onclick="openLightbox('images/art-05.jpg')">
+                <img
+                    src="images/art-05.jpg"
+                    alt="Acrylic marker artwork, piece five"
+                    loading="lazy"
+                >
+            </button>
+
+            <figcaption>
+                <p class="title">Untitled V</p>
+                <p class="details">Acrylic marker on paper · 2026</p>
+            </figcaption>
+        </figure>
+
+
+        <figure class="artwork">
+            <button onclick="openLightbox('images/art-06.jpg')">
+                <img
+                    src="images/art-06.jpg"
+                    alt="Acrylic marker artwork, piece six"
+                    loading="lazy"
+                >
+            </button>
+
+            <figcaption>
+                <p class="title">Untitled VI</p>
+                <p class="details">Acrylic marker on paper · 2026</p>
+            </figcaption>
+        </figure>
+
+
+        <figure class="artwork">
+            <button onclick="openLightbox('images/art-07.jpg')">
+                <img
+                    src="images/art-07.jpg"
+                    alt="Acrylic marker artwork, piece seven"
+                    loading="lazy"
+                >
+            </button>
+
+            <figcaption>
+                <p class="title">Untitled VII</p>
+                <p class="details">Acrylic marker on paper · 2026</p>
+            </figcaption>
+        </figure>
+
+
+        <figure class="artwork">
+            <button onclick="openLightbox('images/art-08.jpg')">
+                <img
+                    src="images/art-08.jpg"
+                    alt="Acrylic marker artwork, piece eight"
+                    loading="lazy"
+                >
+            </button>
+
+            <figcaption>
+                <p class="title">Untitled VIII</p>
+                <p class="details">Acrylic marker on paper · 2026</p>
+            </figcaption>
+        </figure>
+
+
+        <figure class="artwork">
+            <button onclick="openLightbox('images/art-09.jpg')">
+                <img
+                    src="images/art-09.jpg"
+                    alt="Acrylic marker artwork, piece nine"
+                    loading="lazy"
+                >
+            </button>
+
+            <figcaption>
+                <p class="title">Untitled IX</p>
+                <p class="details">Acrylic marker on paper · 2026</p>
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <section id="about" class="about">
+
+        <h2>About the work</h2>
+
+        <p>
+            I work primarily with acrylic markers on paper, using color,
+            pattern, and organic shapes to explore small visual ideas and
+            experiments.
+        </p>
+
+        <p>
+            This collection is an ongoing record of finished pieces,
+            experiments, and whatever I happen to be making lately.
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    © 2026 Daisy Shea ·
+    <a href="https://instagram.com/YOUR_USERNAME" target="_blank" rel="noopener">
+        Instagram
+    </a>
+</footer>
+
+
+<!-- Lightbox -->
+
+<div
+    id="lightbox"
+    class="lightbox"
+    onclick="closeLightbox(event)"
+>
+
+    <button
+        class="close"
+        aria-label="Close artwork"
+        onclick="closeLightbox()"
+    >
+        ×
+    </button>
+
+    <img id="lightbox-image" src="" alt="Expanded artwork">
+</div>
+
+
+<script>
+    function openLightbox(imageSrc) {
+        const lightbox = document.getElementById("lightbox");
+        const image = document.getElementById("lightbox-image");
+
+        image.src = imageSrc;
+        lightbox.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(event) {
+        if (
+            event &&
+            event.target !== document.getElementById("lightbox") &&
+            event.target.className !== "close"
+        ) {
+            return;
+        }
+
+        const lightbox = document.getElementById("lightbox");
+
+        lightbox.classList.remove("active");
+        document.body.style.overflow = "";
+
+        document.getElementById("lightbox-image").src = "";
+    }
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            closeLightbox();
+        }
+    });
+</script>
+
+</body>
+</html>
